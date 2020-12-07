@@ -1,0 +1,20 @@
+CREATE TABLE trails (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    mountain TEXT NOT NULL,
+    terrain TEXT,
+    skill_level INTEGER NOT NULL
+)
+
+CREATE TABLE coffees (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    roast TEXT,
+    price INTEGER NOT NULL
+)
+
+CREATE TABLE hoodies (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    size TEXT NOT NULL,
+
+)
+console.log('hi');
