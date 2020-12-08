@@ -51,4 +51,35 @@ describe('app tests', () => {
 
         expect(response.body).toEqual(trail);
     });
+
+    it('updates a single trail by ID from database via PUT, and returns it', async () => {
+        const trail = await Trail.insert({ mountain: 'Northstar', terrain: 'bike trail', skill_level: 1 });
+
+        const response = await request(app)
+            .put(`/trails/${trail.id}`)
+            .send({
+                mountain: 'Northstar',
+                terrain: 'horse trail',
+                skill_level: 1
+            })
+
+        expect(response.body).toEqual({
+            ...trail,
+            terrain: 'horse trail'
+        });
+    });
+
+    it('deletes a single trail by ID from database via DELETE, and returns it', async () => {
+        const trail = await Trail.insert({ mountain: 'Northstar', terrain: 'bike trail', skill_level: 1 });
+
+        const response = await request(app)
+            .delete(`/trails/${trail.id}`)
+            .send({
+                mountain: 'Northstar',
+                terrain: 'horse trail',
+                skill_level: 1
+            })
+
+        expect(response.body).toEqual({});
+    });
 });
