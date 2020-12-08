@@ -1,12 +1,22 @@
 require('dotenv').config();
 const request = require('supertest');
 const app = require('../lib/app');
+const Trail = require('../lib/models/Trail');
+const pool = require('../lib/utils/pool');
 const fs = require('fs');
 
 
 
 describe('app tests', () => {
-    it('creates trail to the database via POST, and returns it', async () => {
+    beforeEach(() => {
+        return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
+    });
+
+    afterAll(() => {
+        return pool.end();
+    });
+
+    it('creates a trail to the database via POST, and returns it', async () => {
         const response = await request(app)
             .post('/trails')
             .send({
@@ -16,7 +26,7 @@ describe('app tests', () => {
             });
 
         expect(response.body).toEqual({
-            id: '15',
+            id: '1',
             mountain: 'Rubicon',
             terrain: 'horse trail',
             skill_level: 2
