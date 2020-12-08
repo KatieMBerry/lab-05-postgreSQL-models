@@ -32,6 +32,16 @@ describe('app tests', () => {
             skill_level: 2
         });
     });
+
+    it('retrieves all trails from database', async () => {
+        const trail = await Trail.insert({ mountain: 'Northstar', terrain: 'bike trail', skill_level: 1 });
+        const trail2 = await Trail.insert({ mountain: 'Northstar', terrain: 'bike trail', skill_level: 1 });
+
+        const response = await request(app)
+            .get('/trails')
+
+        expect(response.body).toEqual([trail, trail2]);
+    });
 });
     // const expectation = {
     //     mountain: "Rubicon",
