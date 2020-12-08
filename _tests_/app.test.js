@@ -74,12 +74,12 @@ describe('app tests', () => {
 
         const response = await request(app)
             .delete(`/trails/${trail.id}`)
-            .send({
-                mountain: 'Northstar',
-                terrain: 'horse trail',
-                skill_level: 1
-            })
 
-        expect(response.body).toEqual({});
+        expect(response.body).toEqual({
+            id: '1',
+            mountain: 'Northstar',
+            terrain: 'bike trail',
+            skill_level: 1
+        });
     });
 });
