@@ -7,7 +7,7 @@
     "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
     "start": "node -r dotenv/config index.js",
-    "start:watch": "nodemon -r dotenv/config index.js"
+    "start:watch": "nodemon server.js"
   },
   "jest": {
     "testEnvironment": "node"
